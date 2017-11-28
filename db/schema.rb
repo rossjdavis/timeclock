@@ -23,11 +23,10 @@ ActiveRecord::Schema.define(version: 20171127223957) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.string "clock_in"
-    t.string "clock_out"
     t.bigint "site_id"
     t.bigint "rate_id"
     t.bigint "user_id"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rate_id"], name: "index_logs_on_rate_id"
