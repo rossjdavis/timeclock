@@ -53,10 +53,11 @@ ActiveRecord::Schema.define(version: 20171127223957) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "fst_name", null: false
-    t.string "lst_name", null: false
+    t.string "fst_name", default: "", null: false
+    t.string "lst_name", default: "", null: false
     t.string "username", null: false
-    t.string "job_code", null: false
+    t.string "job_code", default: "", null: false
+    t.boolean "clocked_in?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

@@ -1,6 +1,7 @@
 class CreateLogs < ActiveRecord::Migration[5.1]
   def change
     create_table :logs do |t|
+
       t.string :clock_in
       t.string :clock_out
 

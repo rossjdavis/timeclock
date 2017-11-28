@@ -21,5 +21,3 @@ test_rate = test_site.rates.create([
   {job: "AP03", pay: 95.85},
   {job: "AP04", pay: 99.99}
   ])
-
-test_user = User.create(fst_name: "Ross", lst_name: "Davis", username: "rdavis", job_code: "AP04")

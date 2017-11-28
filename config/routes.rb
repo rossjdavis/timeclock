@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :sites do
-    resources :rates
+  root to: "sites#index"
+
+  resources :sites
+
+  resources :sites, only: [:index, :show] do
+    member do
+      post "clock_in"
+      put "clock_out"
+    end
   end
 end
