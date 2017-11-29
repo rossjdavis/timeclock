@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root to: "sites#index"
 
-  resources :sites
+  resources :sites do
+    resources :rates
+  end
 
   resources :sites, only: [:index, :show] do
     member do

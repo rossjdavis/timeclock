@@ -10,37 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127223957) do
+ActiveRecord::Schema.define(version: 20171128230317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "jobs", force: :cascade do |t|
-    t.string "code", null: false
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "code"
+    t.string "name"
+    t.float "rate"
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_jobs_on_site_id"
   end
 
   create_table "logs", force: :cascade do |t|
     t.bigint "site_id"
-    t.bigint "rate_id"
     t.bigint "user_id"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["rate_id"], name: "index_logs_on_rate_id"
     t.index ["site_id"], name: "index_logs_on_site_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
-  end
-
-  create_table "rates", force: :cascade do |t|
-    t.string "job", null: false
-    t.float "pay", default: 0.0, null: false
-    t.bigint "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["site_id"], name: "index_rates_on_site_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -55,7 +45,6 @@ ActiveRecord::Schema.define(version: 20171127223957) do
     t.string "fst_name", default: "", null: false
     t.string "lst_name", default: "", null: false
     t.string "username", null: false
-    t.string "job_code", default: "", null: false
     t.boolean "clocked_in?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,12 +58,12 @@ ActiveRecord::Schema.define(version: 20171127223957) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.boolean "is_admin?"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "logs", "rates"
+  add_foreign_key "jobs", "sites"
   add_foreign_key "logs", "sites"
   add_foreign_key "logs", "users"
-  add_foreign_key "rates", "sites"
 end
