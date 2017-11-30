@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+.rows {
+  display: flex;
+  flex-direction: row;
+}
+
+.view_short {
+  width: 100px;
+}
+
+.view_long {
+  width: 200px;
+}
+
+.view_link {
+  width: 50px;
+}
+
+.odds {
+  background: lightgrey;
+}
+
+.even {
+  background: white;
+}

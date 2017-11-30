@@ -1,0 +1,7 @@
+<% if current_user.clocked_in? %>
+  <%= link_to "Clock Out", clock_out_log_path(@site), method: :put %>
+<% else %>
+  <% if !current_user.logs.exists?(:date => Date.today) %>
+    <%= link_to "Clock In", clock_in_log_path(@site), method: :post %>
+  <% end %>
+<% end %>

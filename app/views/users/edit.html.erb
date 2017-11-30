@@ -1,0 +1,26 @@
+<% @user.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
+<%= form_for @user do |f| %>
+
+  <%= f.label :first %>
+  <%= f.text_field :fst_name %>
+
+  <%= f.label :last %>
+  <%= f.text_field :lst_name %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :is_admin? %>
+  <%= f.text_field :is_admin? %>
+
+  <%= f.submit %>
+<% end %>

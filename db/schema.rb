@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20171128230317) do
   enable_extension "plpgsql"
 
   create_table "jobs", force: :cascade do |t|
-    t.string "code"
+    t.string "code", limit: 4
     t.string "name"
     t.float "rate"
     t.bigint "site_id"
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "is_admin?"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.boolean "is_admin?", default: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "jobs", "sites"

@@ -1,44 +1,56 @@
 class SitesController < ApplicationController
+  before_action :auth_admin!
 
   def index
     @sites = Site.all
-    if current_user.is_admin?
-      render "sites/admin/index"
+  end
+
+  def new
+    @site = Site.new
+  end
+
+  def create
+    @site = Site.new(site_params)
+    if @site.save
+      flash[:notice] = "#{@site.name} has been added"
+      redirect_to sites_path
     else
-      render "index"
+      render :new
     end
   end
 
   def show
     @site = Site.find(params[:id])
-    if current_user.is_admin?
-      render "sites/admin/show"
+  end
+
+  def edit
+    @site = Site.find(params[:id])
+  end
+
+  def update
+    @site = Site.find(params[:id])
+    if @site.update(site_params)
+      flash[:notice] = "#{@site.name} has been updated"
+      redirect_to sites_path
     else
-      render "show"
+      render :edit
     end
   end
 
-  def new
-    if current_user.is_admin?
-      @site = Site.new
-      render "sites/admin/new"
-    else
-      render "index"
+  def destroy
+    @site = Site.find(params[:id])
+    @site.destroy
+    redirect_to sites_path
   end
 
-  def clock_in
-    @site = Site.find(params[:id])
-    @site.logs.create(user: current_user, date: Date.today)
-    current_user.update(clocked_in?: true)
-    flash[:notice] = `Clocked in at #{Time.now}`
-    redirect_to @site
+  private
+  def site_params
+    params.require(:site).permit(:name, :address)
   end
 
-  def clock_out
-    @site = Site.find(params[:id])
-    @site.logs.update(user: current_user)
-    current_user.update(clocked_in?: false)
-    flash[:notice] = `Clocked out at #{Time.now}`
-    sign_out_and_redirect(current_user)
+  def auth_admin!
+    unless current_user.is_admin?
+      redirect_to logs_path
+    end
   end
 end

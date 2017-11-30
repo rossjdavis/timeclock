@@ -13,4 +13,12 @@ test_rate = test_site.jobs.create([
   {code: "AP02", name: "Apprentice Plumber - 2", rate: 93.50},
   {code: "AP03", name: "Apprentice Plumber - 3", rate: 95.85},
   {code: "AP04", name: "Apprentice Plumber - 4", rate: 99.99}
-  ])
+])
+
+# user_test = User.create(
+#   fst_name: "Ross",
+#   lst_name: "Davis",
+#   username: "rdavis",
+#   password: "password",
+#   email: "rdavis@gmail.com"
+# )

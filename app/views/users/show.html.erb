@@ -1,0 +1,32 @@
+<%= @user.fst_name %>
+<%= @user.lst_name %>
+
+<%= @user.username %>
+<%= @user.email %>
+
+<div class="rows">
+  <p class="view_short"> Date </p>
+  <p class="view_long"> Job Site </p>
+  <p class="view_short"> Hours </p>
+  <p class="view_short"> Clock In </p>
+  <p class="view_short"> Clock Out </p>
+</div>
+
+<div>
+  <% count = 1 %>
+  <% @user.logs.each do | log | %>
+    <% if count.odd? %>
+      <% viewor = "odds" %>
+    <% else %>
+      <% viewor = "even" %>
+    <% end %>
+    <div class="rows <%= viewor %> ">
+      <p class="view_short"><%= log.date %> </p>
+      <p class="view_long"><%= log.site.name %> </p>
+      <p class="view_short"><%= log.updated_at - log.created_at %> </p>
+      <p class="view_short"><%= log.created_at.strftime("%I:%m %p") %> </p>
+      <p class="view_short"><%= log.updated_at.strftime("%I:%m %p") %> </p>
+    </div>
+    <% count += 1 %>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+
+
+<div class="rows">
+  <p class="view_long"> Employee </p>
+  <p class="view_long"> Login </p>
+  <p class="view_link"> <%= link_to "Add", new_user_path %> </p>
+</div>
+
+
+<div>
+  <% count = 1 %>
+  <% @users.each do | user | %>
+    <% if count.odd? %>
+      <% viewor = "odds" %>
+    <% else %>
+      <% viewor = "even" %>
+    <% end %>
+    <div class="rows <%= viewor %> ">
+      <p class="view_long"><%= user.fst_name %> <%= user.lst_name %></p>
+      <p class="view_long"><%= user.username %></p>
+      <p class="view_link"><%= link_to "View", user_path(user) %></p>
+      <p class="view_link"><%= link_to "Edit", edit_user_path(user) %></p>
+      <p class="view_link"><%= link_to "Delete", user_path(user),
+                                        method: :delete, class: 'delete',
+                                        :data => {:confirm => "Confirm Delete"} %></p>
+    </div>
+    <% count += 1 %>
+  <% end %>
+</div>

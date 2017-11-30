@@ -1,0 +1,12 @@
+<%= form_for [@site, @job] do |f| %>
+  <%= f.label :code %>
+  <%= f.text_field :code %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :rate %>
+  <%= f.text_field :rate %>
+
+  <%= f.submit %>
+<% end %>
