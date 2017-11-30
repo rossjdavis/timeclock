@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :logs, only: [:index] do
+  resources :logs, only: [:index, :show] do
     member do
       post "clock_in"
       put "clock_out"
