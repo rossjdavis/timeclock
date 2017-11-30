@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.string "fst_name", default: "", null: false
     t.string "lst_name", default: "", null: false
     t.string "username", null: false
-    t.boolean "clocked_in?"
+    t.boolean "clocked_in", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "is_admin?", default: true
+    t.boolean "is_admin"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

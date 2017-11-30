@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :lst_name, null: false, default: ""
       t.string :username, null: false, unique: true
 
-      t.boolean :clocked_in?
+      t.boolean :clocked_in, default: false
 
       t.timestamps
     end

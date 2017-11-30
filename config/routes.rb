@@ -6,14 +6,12 @@ Rails.application.routes.draw do
 
   resources :sites do
     resources :jobs
-  end
-
-  resources :users
-
-  resources :logs, only: [:index, :show] do
     member do
       post "clock_in"
       put "clock_out"
     end
   end
+
+  resources :users
+
 end

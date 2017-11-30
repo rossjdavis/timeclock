@@ -1,30 +1,42 @@
-<%= @site.name %>
-<%= @site.address %>
+<p class="view_link"> <%= link_to "Logout", destroy_user_session_path, method: :delete %> </p>
 
-<div class="rows">
-  <p class="view_short"> Code </p>
-  <p class="view_long"> Name </p>
-  <p class="view_short"> Rate </p>
-  <p class="view_link"> <%= link_to "Add", new_site_job_path(@site) %> </p>
-</div>
+<% if current_user && current_user.is_admin %>
+  <%= @site.name %>
+  <%= @site.address %>
 
-<div>
-  <% count = 1 %>
-  <% @site.jobs.each do | job | %>
-    <% if count.odd? %>
-      <% viewor = "odds" %>
-    <% else %>
-      <% viewor = "even" %>
+  <div class="rows">
+    <p class="view_short"> Code </p>
+    <p class="view_long"> Name </p>
+    <p class="view_short"> Rate </p>
+    <p class="view_link"> <%= link_to "Add", new_site_job_path(@site) %> </p>
+  </div>
+
+  <div>
+    <% count = 1 %>
+    <% @site.jobs.each do | job | %>
+      <% if count.odd? %>
+        <% viewor = "odds" %>
+      <% else %>
+        <% viewor = "even" %>
+      <% end %>
+      <div class="rows <%= viewor %> ">
+        <p class="view_short"><%= job.code %> </p>
+        <p class="view_long"><%= job.name %> </p>
+        <p class="view_short"><%= job.rate %> </p>
+        <p class="view_link"><%= link_to "Edit", edit_site_job_path(@site, job) %> </p>
+        <p class="view_link"><%= link_to "Delete", site_job_path(@site, job),
+                                          method: :delete, class: 'delete',
+                                          :data => {:confirm => "Confirm Delete"}%> </p>
+      </div>
+      <% count += 1 %>
     <% end %>
-    <div class="rows <%= viewor %> ">
-      <p class="view_short"><%= job.code %> </p>
-      <p class="view_long"><%= job.name %> </p>
-      <p class="view_short"><%= job.rate %> </p>
-      <p class="view_link"><%= link_to "Edit", edit_site_job_path(@site, job) %> </p>
-      <p class="view_link"><%= link_to "Delete", site_job_path(@site, job),
-                                        method: :delete, class: 'delete',
-                                        :data => {:confirm => "Confirm Delete"}%> </p>
-    </div>
-    <% count += 1 %>
+  </div>
+<% else %>
+  <% if current_user.clocked_in %>
+    <%= link_to "Clock Out", clock_out_site_path(@site), method: :put %>
+  <% else %>
+    <% if !current_user.logs.exists?(:date => Date.today) %>
+      <%= link_to "Clock In", clock_in_site_path(@site), method: :post %>
+    <% end %>
   <% end %>
-</div>
+<% end %>

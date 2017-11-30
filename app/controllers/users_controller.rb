@@ -49,8 +49,8 @@ class UsersController < ApplicationController
   end
 
   def auth_admin!
-    unless current_user.is_admin?
-      redirect_to logs_path
+    unless current_user.is_admin
+      redirect_to sites_path
     end
   end
 

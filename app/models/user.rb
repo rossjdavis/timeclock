@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :logs, dependent: :destroy
   has_many :sites, through: :logs
 
-  validates :password, length: { is: 9 }, numericality: { only_integer: true }
+  # validates :password, length: { is: 9 }, numericality: { only_integer: true }
   validates :username, presence: true, uniqueness: true
   # validates :fst_name, :lst_name, presence: true, length: { minimum: 2 }
 
