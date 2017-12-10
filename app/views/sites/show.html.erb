@@ -1,34 +1,32 @@
 <% if current_user && current_user.is_admin %>
-  <%= @site.name %>
-  <%= @site.address %>
 
-  <div class="rows">
-    <p class="view_short"> Code </p>
-    <p class="view_long"> Name </p>
-    <p class="view_short"> Rate </p>
-    <p class="view_link"> <%= link_to "Add", new_site_job_path(@site) %> </p>
-  </div>
-
-  <div>
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Rate</th>
+      <th><%= link_to "Add", new_site_job_path(@site) %></th>
+    </tr>
     <% count = 1 %>
     <% @site.jobs.each do | job | %>
       <% if count.odd? %>
-        <% viewor = "odds" %>
+        <% color = "odds" %>
       <% else %>
-        <% viewor = "even" %>
+        <% color = "even" %>
       <% end %>
-      <div class="rows <%= viewor %> ">
-        <p class="view_short"><%= job.code %> </p>
-        <p class="view_long"><%= job.name %> </p>
-        <p class="view_short"><%= job.rate %> </p>
-        <p class="view_link"><%= link_to "Edit", edit_site_job_path(@site, job) %> </p>
-        <p class="view_link"><%= link_to "Delete", site_job_path(@site, job),
-                                          method: :delete, class: 'delete',
-                                          :data => {:confirm => "Confirm Delete"}%> </p>
-      </div>
+      <tr class="<%= color %>">
+        <td><%= job.code %></td>
+        <td><%= job.name %></td>
+        <td><%= job.rate %></td>
+        <td><%= link_to "Edit", edit_site_job_path(@site, job) %></td>
+        <td><%= link_to "Delete", site_path(@site, job),
+                                  method: :delete, class: 'delete',
+                                  :data => {:confirm => "Confirm Delete"} %></td>
+      </tr>
       <% count += 1 %>
     <% end %>
-  </div>
+  </table>
+
 <% else %>
   <% if current_user.clocked_in %>
     <%= link_to "Clock Out", clock_out_site_path(@site), method: :put %>

@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @header = "#{@user.fst_name} #{@user.lst_name}"
+    @logs = Log.find_by(user_id: @user.id)
   end
 
   def edit

@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20171128230317) do
   create_table "logs", force: :cascade do |t|
     t.bigint "site_id"
     t.bigint "user_id"
+    t.time "time_in"
+    t.time "time_out"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,29 +1,25 @@
-
-
-<div class="rows">
-  <p class="view_long"> Employee </p>
-  <p class="view_long"> Login </p>
-  <p class="view_link"> <%= link_to "Add", new_user_path %> </p>
-</div>
-
-
-<div>
+<table>
+  <tr>
+    <th>Employee</th>
+    <th>Login</th>
+    <th><%= link_to "Add", new_user_path %></th>
+  </tr>
   <% count = 1 %>
   <% @users.each do | user | %>
     <% if count.odd? %>
-      <% viewor = "odds" %>
+      <% color = "odds" %>
     <% else %>
-      <% viewor = "even" %>
+      <% color = "even" %>
     <% end %>
-    <div class="rows <%= viewor %> ">
-      <p class="view_long"><%= user.fst_name %> <%= user.lst_name %></p>
-      <p class="view_long"><%= user.username %></p>
-      <p class="view_link"><%= link_to "View", user_path(user) %></p>
-      <p class="view_link"><%= link_to "Edit", edit_user_path(user) %></p>
-      <p class="view_link"><%= link_to "Delete", user_path(user),
-                                        method: :delete, class: 'delete',
-                                        :data => {:confirm => "Confirm Delete"} %></p>
-    </div>
+    <tr class="<%= color %>">
+      <td><%= user.fst_name %> <%= user.lst_name %></td>
+      <td><%= user.username %>
+      <td><%= link_to "View", user_path(user) %></td>
+      <td><%= link_to "Edit", edit_user_path(user) %></td>
+      <td><%= link_to "Delete", user_path(user),
+                                method: :delete, class: 'delete',
+                                :data => {:confirm => "Confirm Delete"} %></td>
+    </tr>
     <% count += 1 %>
   <% end %>
-</div>
+</table>

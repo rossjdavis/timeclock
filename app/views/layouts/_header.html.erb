@@ -1,0 +1,29 @@
+<header>
+  <div class="logo">
+    <span class="logo-offset">aB</span>
+    <span>Plumbing</span>
+  </div>
+
+  <% if @header %>
+    <div>
+      <%= @header %>
+    </div>
+  <% else %>
+   <div class="time"></div>
+  <% end %>
+
+  <% if current_user %>
+  <div class="links">
+    <nav>
+    <% if current_user.is_admin? %>
+      <%= link_to "Sites", sites_path %>
+      <%= link_to "Users", users_path %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <div class="empty"></div>
+    </nav>
+    <% end %>
+  </div>
+  <% end %>
+
+</header>

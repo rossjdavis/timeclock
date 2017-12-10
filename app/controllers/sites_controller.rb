@@ -21,7 +21,7 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.find(params[:id])
-    binding.pry
+    @header = @site.name
   end
 
   def edit
@@ -46,17 +46,19 @@ class SitesController < ApplicationController
 
   def clock_in
     @site = Site.find(params[:id])
-    @site.logs.create(user: current_user, date: Date.today)
+    @site.logs.create(date: Date.today, user: current_user)
     current_user.update!(clocked_in: true)
-    flash[:notice] = "Clocked in at #{Time.now}"
+    @time = Time.now.strftime("%I:%M:%S%p")
+    flash[:notice] = "Clocked in at #{@time}"
     redirect_to site_path(@site)
   end
 
   def clock_out
     @site = Site.find(params[:id])
     @site.logs.update(user: current_user)
-    current_user.update!(clocked_in: false)
-    flash[:notice] = "Clocked out at #{Time.now}"
+    current_user.update!(clocked_in: true)
+    @time = Time.now.strftime("%I:%M:%S%p")
+    flash[:notice] = "Clocked out at #{@time}"
     sign_out_and_redirect(current_user)
   end
 

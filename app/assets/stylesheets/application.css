@@ -17,29 +17,56 @@
 body {
   display: flex;
   flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
   margin: 0 auto;
 }
 
-div {
+nav a {
+  text-decoration: none;
+  color: red;
+  padding: 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+table {
   display: flex;
-  flex-direction: column;
 }
 
-.rows {
-  display: flex;
-  flex-direction: row;
+th,
+td {
+  padding: 20px;
 }
 
-.view_short {
-  width: 100px;
-}
-
-.view_long {
+.empty,
+.links,
+.logo {
   width: 200px;
 }
 
-.view_link {
-  width: 50px;
+.logo {
+  font-size: 25px;
+  padding: 10px;
+}
+
+.logo-offset {
+  color: red;
+}
+
+.empty {
+  width: 150px;
 }
 
 .odds {
