@@ -10,7 +10,9 @@ class RatesController < ApplicationController
   def create
     @site = Site.find(params[:site_id])
     @rate = @site.rates.new(rate_params)
+    @jobs = Job.all
     if @rate.save
+      flash[:notice] = "#{@rate.job_code} has been added"
       redirect_to site_path(@site)
     else
       render :new
@@ -20,12 +22,15 @@ class RatesController < ApplicationController
   def edit
     @site = Site.find(params[:site_id])
     @rate = Rate.find(params[:id])
+    @jobs = Job.all
   end
 
   def update
     @site = Site.find(params[:site_id])
     @rate = Rate.find(params[:id])
+    @jobs = Job.all
     if @rate.update(rate_params)
+      flash[:notice] = "#{@rate.job_code} has been updated"
       redirect_to site_path(@site)
     else
       render :edit
@@ -41,7 +46,7 @@ class RatesController < ApplicationController
 
   private
   def rate_params
-    params.require(:rate).permit(:code, :name, :rate, :site_id)
+    params.require(:rate).permit(:job_code, :name, :pay_rate, :site_id)
   end
 
   def auth_admin!

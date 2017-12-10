@@ -3,10 +3,12 @@ class SitesController < ApplicationController
 
   def index
     @sites = Site.all
+    @header = "Job Sites"
   end
 
   def new
     @site = Site.new
+    @header = "New Job Site"
   end
 
   def create
@@ -26,6 +28,7 @@ class SitesController < ApplicationController
 
   def edit
     @site = Site.find(params[:id])
+    @header = "Edit Job Site"
   end
 
   def update

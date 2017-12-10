@@ -1,5 +1,5 @@
 <% @user.errors.full_messages.each do |message| %>
-  <p><%= message %></p>
+  <p class="alert"><%= message %></p>
 <% end %>
 
 <%= form_for @user do |f| %>

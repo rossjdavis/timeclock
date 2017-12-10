@@ -3,11 +3,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @header = "Employees"
   end
 
   def new
     @user = User.new
     @jobs = Job.all
+    @header = "New Employee"
   end
 
   def create
@@ -29,6 +31,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @jobs = Job.all
+    @header = "Edit Employee"
   end
 
   def update
