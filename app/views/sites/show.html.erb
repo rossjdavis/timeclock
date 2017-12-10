@@ -5,10 +5,11 @@
       <th>Code</th>
       <th>Name</th>
       <th>Rate</th>
-      <th><%= link_to "Add", new_site_job_path(@site) %></th>
+      <th><%= link_to "Add", new_site_rate_path(@site) %></th>
     </tr>
     <% count = 1 %>
-    <% @site.jobs.each do | job | %>
+    <% @site.rates.each do | rate | %>
+      <% job = Job.find_by(:code => rate.job_code) %>
       <% if count.odd? %>
         <% color = "odds" %>
       <% else %>
@@ -17,9 +18,9 @@
       <tr class="<%= color %>">
         <td><%= job.code %></td>
         <td><%= job.name %></td>
-        <td><%= job.rate %></td>
-        <td><%= link_to "Edit", edit_site_job_path(@site, job) %></td>
-        <td><%= link_to "Delete", site_path(@site, job),
+        <td><%= rate.pay_rate %></td>
+        <td><%= link_to "Edit", edit_site_rate_path(@site, rate) %></td>
+        <td><%= link_to "Delete", site_path(@site, rate),
                                   method: :delete, class: 'delete',
                                   :data => {:confirm => "Confirm Delete"} %></td>
       </tr>
@@ -32,7 +33,9 @@
     <%= link_to "Clock Out", clock_out_site_path(@site), method: :put %>
   <% else %>
     <% if !current_user.logs.exists?(:date => Date.today) %>
-      <%= link_to "Clock In", clock_in_site_path(@site), method: :post %>
+      <%= link_to "Clock In", clock_in_site_path(@site), method: :post %>``
+    <% else %>
+      <p> Your time has already been logged for today. </p>
     <% end %>
   <% end %>
 <% end %>

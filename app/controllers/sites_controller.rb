@@ -48,7 +48,7 @@ class SitesController < ApplicationController
     @site = Site.find(params[:id])
     @site.logs.create(date: Date.today, user: current_user)
     current_user.update!(clocked_in: true)
-    @time = Time.now.strftime("%I:%M:%S%p")
+    @time = Time.now.strftime("%I:%M:%S %p")
     flash[:notice] = "Clocked in at #{@time}"
     redirect_to site_path(@site)
   end
@@ -56,8 +56,8 @@ class SitesController < ApplicationController
   def clock_out
     @site = Site.find(params[:id])
     @site.logs.update(user: current_user)
-    current_user.update!(clocked_in: true)
-    @time = Time.now.strftime("%I:%M:%S%p")
+    current_user.update!(clocked_in: false)
+    @time = Time.now.strftime("%I:%M:%S %p")
     flash[:notice] = "Clocked out at #{@time}"
     sign_out_and_redirect(current_user)
   end

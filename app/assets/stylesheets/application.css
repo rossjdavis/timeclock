@@ -31,6 +31,11 @@ main {
   margin: 0 auto;
 }
 
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
 nav a {
   text-decoration: none;
   color: red;
@@ -47,10 +52,9 @@ table {
 
 th,
 td {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
-.empty,
 .links,
 .logo {
   width: 200px;

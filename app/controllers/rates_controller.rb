@@ -1,16 +1,16 @@
-class JobsController < ApplicationController
+class RatesController < ApplicationController
   before_action :auth_admin!
 
   def new
     @site = Site.find(params[:site_id])
-    @job = @site.jobs.new
+    @rate = @site.rates.new
+    @jobs = Job.all
   end
 
   def create
     @site = Site.find(params[:site_id])
-    @job = @site.jobs.new(job_params)
-    if @job.save
-      flash[:notice] = "#{@job.code} has been added"
+    @rate = @site.rates.new(rate_params)
+    if @rate.save
       redirect_to site_path(@site)
     else
       render :new
@@ -19,14 +19,13 @@ class JobsController < ApplicationController
 
   def edit
     @site = Site.find(params[:site_id])
-    @job = Job.find(params[:id])
+    @rate = Rate.find(params[:id])
   end
 
   def update
     @site = Site.find(params[:site_id])
-    @job = Job.find(params[:id])
-    if @job.update(job_params)
-      flash[:notice] = "#{@job.code} has been updated"
+    @rate = Rate.find(params[:id])
+    if @rate.update(rate_params)
       redirect_to site_path(@site)
     else
       render :edit
@@ -35,14 +34,14 @@ class JobsController < ApplicationController
 
   def destroy
     @site = Site.find(params[:site_id])
-    @job = Job.find(params[:id])
-    @job.destroy
+    @rate = Rate.find(params[:id])
+    @rate.destroy
     redirect_to site_path(@site)
   end
 
   private
-  def job_params
-    params.require(:job).permit(:code, :name, :rate, :site_id)
+  def rate_params
+    params.require(:rate).permit(:code, :name, :rate, :site_id)
   end
 
   def auth_admin!

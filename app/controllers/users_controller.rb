@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @jobs = Job.all
   end
 
   def create
@@ -22,11 +23,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @header = "#{@user.fst_name} #{@user.lst_name}"
-    @logs = Log.find_by(user_id: @user.id)
+    @logs = Log.where(user_id: @user.id)
   end
 
   def edit
     @user = User.find(params[:id])
+    @jobs = Job.all
   end
 
   def update

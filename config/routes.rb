@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "sites#index"
 
   resources :sites do
-    resources :jobs
+    resources :rates
     member do
       post "clock_in"
       put "clock_out"

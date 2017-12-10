@@ -17,8 +17,8 @@
       <td><%= log.date %></td>
       <td><%= log.site.name %></td>
       <td><%= Time.parse(log.updated_at.to_s) - Time.parse(log.created_at.to_s) %></td>
-      <td><%= log.created_at.strftime("%I:%M:%S%p") %></td>
-      <td><%= log.updated_at.strftime("%I:%M:%S%p") %></td>
+      <td><%= log.created_at.strftime("%I:%M:%S %p") %></td>
+      <td><%= log.updated_at.strftime("%I:%M:%S %p") %></td>
     </tr>
     <% count += 1 %>
   <% end %>
