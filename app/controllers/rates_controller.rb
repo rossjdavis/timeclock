@@ -2,6 +2,7 @@ class RatesController < ApplicationController
   before_action :auth_admin!
 
   def new
+    @header = "New Rate"
     @site = Site.find(params[:site_id])
     @rate = @site.rates.new
     @jobs = Job.all
@@ -20,6 +21,7 @@ class RatesController < ApplicationController
   end
 
   def edit
+    @header = "Edit Rate"
     @site = Site.find(params[:site_id])
     @rate = Rate.find(params[:id])
     @jobs = Job.all

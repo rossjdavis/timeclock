@@ -17,6 +17,7 @@
 body {
   display: flex;
   flex-direction: column;
+  margin: 0 25px;
 }
 
 header {
@@ -77,16 +78,10 @@ input[type="submit"]:hover {
 .alert {
   display: flex;
   justify-content: center;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.notice {
-  background: lightblue;
 }
 
 .alert {
-  background: lightcoral;
+  color: red;
 }
 
 .links,
@@ -96,7 +91,6 @@ input[type="submit"]:hover {
 
 .logo {
   font-size: 25px;
-  padding: 10px;
 }
 
 .logo-offset {

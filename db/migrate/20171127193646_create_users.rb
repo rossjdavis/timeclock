@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :fst_name, null: false, default: ""
       t.string :lst_name, null: false, default: ""
       t.string :username, null: false, unique: true
-      t.string :job_code
+      t.string :job_code, null: false, default: "NA00"
 
       t.boolean :clocked_in, default: false
 

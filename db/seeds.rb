@@ -10,6 +10,7 @@ test_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: 
 
 test_user = User.create!(:username => "admin", :password => "password", :is_admin => true)
 
+Job.create(code: "NA00", name: "Unassigned")
 Job.create(code: "AP01", name: "Apprentice Plumber - 1")
 Job.create(code: "AP02", name: "Apprentice Plumber - 2")
 Job.create(code: "AP03", name: "Apprentice Plumber - 3")

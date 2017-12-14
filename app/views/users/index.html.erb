@@ -1,11 +1,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Job</th>
     <th>Login</th>
     <th><%= link_to "Add", new_user_path %></th>
   </tr>
   <% count = 1 %>
   <% @users.each do | user | %>
+  <% job = Job.find_by(:code => user.job_code) %>
     <% if count.odd? %>
       <% color = "odds" %>
     <% else %>
@@ -13,7 +15,8 @@
     <% end %>
     <tr class="<%= color %>">
       <td><%= user.fst_name %> <%= user.lst_name %></td>
-      <td><%= user.username %>
+      <td><%= job.code %> <%= job.name %> </td>
+      <td><%= user.username %></td>
       <td><%= link_to "View", user_path(user) %></td>
       <td><%= link_to "Edit", edit_user_path(user) %></td>
       <td><%= link_to "Delete", user_path(user),

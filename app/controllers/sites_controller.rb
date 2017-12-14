@@ -2,13 +2,13 @@ class SitesController < ApplicationController
   before_action :auth_admin!, except: [:index, :show, :clock_in, :clock_out]
 
   def index
-    @sites = Site.all
     @header = "Job Sites"
+    @sites = Site.all
   end
 
   def new
-    @site = Site.new
     @header = "New Job Site"
+    @site = Site.new
   end
 
   def create
@@ -27,8 +27,8 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @site = Site.find(params[:id])
     @header = "Edit Job Site"
+    @site = Site.find(params[:id])
   end
 
   def update
@@ -49,7 +49,8 @@ class SitesController < ApplicationController
 
   def clock_in
     @site = Site.find(params[:id])
-    @site.logs.create(date: Date.today, user: current_user)
+    @rate = @site.rates.find_by(:job_code => current_user.job_code)
+    @site.logs.create(date: Date.today, user: current_user, rate: @rate.pay_rate)
     current_user.update!(clocked_in: true)
     @time = Time.now.strftime("%I:%M:%S %p")
     flash[:notice] = "Clocked in at #{@time}"
