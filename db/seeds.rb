@@ -6,9 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-test_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: "192.168.1.1")
+first_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: "192.168.1.1")
+first_rate = @first_site.create(job_code: "NA00", pay_rate: 0.00)
 
-test_user = User.create!(:username => "admin", :password => "password", :is_admin => true)
+admin_user = User.create!(:username => "admin", :password => "password", :is_admin => true)
+other_user = User.create!
+(
+  :username => "testuser",
+  :password => "password",
+  :fst_name => "Test",
+  :lst_name => "User"
+)
 
 Job.create(code: "NA00", name: "Unassigned")
 Job.create(code: "AP01", name: "Apprentice Plumber - 1")
