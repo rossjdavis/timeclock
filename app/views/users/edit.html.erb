@@ -2,26 +2,35 @@
   <p class="alert"><%= message %></p>
 <% end %>
 
+
 <%= form_for @user do |f| %>
-<table>
-  <tr>
-    <th><%= f.label :first %></th>
-    <th><%= f.label :last %></th>
-    <th><%= f.label :username %></th>
-    <th><%= f.label :password %></th>
-    <th><%= f.label :email %></th>
-    <th><%= f.label "Job Code" %></th>
-  </tr>
-
-  <tr>
-    <td><%= f.text_field :fst_name %></td>
-    <td><%= f.text_field :lst_name %></td>
-    <td><%= f.text_field :username %></td>
-    <td><%= f.password_field :password %></td>
-    <td><%= f.email_field :email %></td>
-    <td><%= f.select :job_code, @jobs.collect { |job | [job.name, job.code] }, include_blank: true %></td>
-  </tr>
-</table>
-
+<div>
+  <p>
+    <%= f.label "First" %>
+    <%= f.text_field :fst_name %>
+  </p>
+  <p>
+    <%= f.label "Last" %>
+    <%= f.text_field :lst_name %>
+  </p>
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </p>
+  <p>
+    <%= f.label "Job" %>
+    <%= f.select :job_code, @jobs.collect { |job | [job.name, job.code] } %>
+  </p>
   <%= f.submit %>
+</div>
+
+
 <% end %>

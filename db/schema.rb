@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20171211141706) do
     t.string "fst_name", default: "", null: false
     t.string "lst_name", default: "", null: false
     t.string "username", null: false
-    t.string "job_code", default: "NA00", null: false
+    t.string "job_code"
     t.boolean "clocked_in", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

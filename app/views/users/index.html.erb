@@ -15,7 +15,11 @@
     <% end %>
     <tr class="<%= color %>">
       <td><%= user.fst_name %> <%= user.lst_name %></td>
-      <td><%= job.name %> </td>
+      <td>
+        <% if job %>
+          <%= job.name %>
+        <% end %>
+      </td>
       <td><%= user.username %></td>
       <td><%= link_to "View", user_path(user) %></td>
       <td><%= link_to "Edit", edit_user_path(user) %></td>

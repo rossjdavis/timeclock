@@ -3,17 +3,15 @@
 <% end %>
 
 <%= form_for @site do |f| %>
-<table>
-  <tr>
-    <th><%= f.label :name %></th>
-    <th><%= f.label :address %></th>
-  </tr>
-
-  <tr>
-    <td><%= f.text_field :name %></td>
-    <td><%= f.text_field :address %></td>
-  </tr>
-</table>
-
+<div>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+</div>
   <%= f.submit %>
 <% end %>

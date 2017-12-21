@@ -17,7 +17,11 @@
     <tr class="<%= color %>">
       <td><%= log.date %></td>
       <td><%= link_to log.site.name, site_path(log.site) %></td>
-      <td><%= log.rate %>
+      <td>
+        <% if log %>
+          <%= log.rate %>
+        <% end %>
+      </td>
       <td><%= Time.parse(log.updated_at.to_s) - Time.parse(log.created_at.to_s) %></td>
       <td><%= log.created_at.strftime("%I:%M:%S %p") %></td>
       <td><%= log.updated_at.strftime("%I:%M:%S %p") %></td>

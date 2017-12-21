@@ -66,8 +66,9 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   margin: 10px;
-  border-radius: 0px;
+  border-radius: 1px;
   padding: 10px 25px;
+  background: lightgrey;
 }
 
 input[type="submit"]:hover {

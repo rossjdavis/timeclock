@@ -10,7 +10,7 @@
   </tr>
 
   <tr>
-    <td><%= f.select :job_code, @jobs.collect { |job | [job.name, job.code] }, include_blank: true %></td>
+    <td><%= f.select :job_code, @jobs.collect { |job | [job.name, job.code] } %></td>
     <td><%= f.text_field :pay_rate %></td>
   </tr>
 </table>
