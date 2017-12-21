@@ -14,6 +14,7 @@ Create a timeclock app for employees to clock in and out ONCE per day. The compa
 
 * Ruby on Rails
 * pSQL
+* Devise
 
 ## Features
 
