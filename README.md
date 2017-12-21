@@ -7,6 +7,7 @@ Create a timeclock app for employees to clock in and out ONCE per day. The compa
 ## Planning
 
 * Obtain list of Job Codes and Rates
+* Discuss requirements with company manager
 * ERD (located in /planning)
 
 ## Technologies
