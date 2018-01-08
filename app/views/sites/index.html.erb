@@ -1,31 +1,29 @@
 <% if current_user && current_user.is_admin %>
-  <div class="rows">
-    <p class="view_long"> Job Site </p>
-    <p class="view_long"> Address </p>
-    <p class="view_link"> <%= link_to "Add", new_site_path %> </p>
-  </div>
-
-
-  <div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th><%= link_to "Add", new_site_path %></th>
+    </tr>
     <% count = 1 %>
     <% @sites.each do | site | %>
       <% if count.odd? %>
-        <% viewor = "odds" %>
+        <% color = "odds" %>
       <% else %>
-        <% viewor = "even" %>
+        <% color = "even" %>
       <% end %>
-      <div class="rows <%= viewor %> ">
-        <p class="view_long"><%= site.name %></p>
-        <p class="view_long"><%= site.address %></p>
-        <p class="view_link"><%= link_to "View", site_path(site) %></p>
-        <p class="view_link"><%= link_to "Edit", edit_site_path(site) %></p>
-        <p class="view_link"><%= link_to "Delete", site_path(site),
-                                          method: :delete, class: 'delete',
-                                          :data => {:confirm => "Confirm Delete"} %></p>
-      </div>
+      <tr class="<%= color %>">
+        <td><%= site.name %></td>
+        <td><%= site.address %></td>
+        <td><%= link_to "View", site_path(site) %></td>
+        <td><%= link_to "Edit", edit_site_path(site) %></td>
+        <td><%= link_to "Delete", site_path(site),
+                                  method: :delete, class: 'delete',
+                                  :data => {:confirm => "Confirm Delete"} %></td>
+      </tr>
       <% count += 1 %>
     <% end %>
-  </div>
+  </table>
 
 <% else %>
   <% @sites.each do | site | %>

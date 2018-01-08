@@ -1,9 +1,17 @@
+<% @site.errors.full_messages.each do |message| %>
+  <p class="alert"><%= message %></p>
+<% end %>
+
 <%= form_for @site do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-
+<div>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+</div>
   <%= f.submit %>
 <% end %>

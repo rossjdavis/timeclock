@@ -1,32 +1,31 @@
-<%= @user.fst_name %>
-<%= @user.lst_name %>
-
-<%= @user.username %>
-<%= @user.email %>
-
-<div class="rows">
-  <p class="view_short"> Date </p>
-  <p class="view_long"> Job Site </p>
-  <p class="view_short"> Hours </p>
-  <p class="view_short"> Clock In </p>
-  <p class="view_short"> Clock Out </p>
-</div>
-
-<div>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Job Site</th>
+    <th>Rate</th>
+    <th>Hours</th>
+    <th>Time In</th>
+    <th>Time Out</th>
+  </tr>
   <% count = 1 %>
-  <% @user.logs.each do | log | %>
+  <% @logs.each do | log | %>
     <% if count.odd? %>
-      <% viewor = "odds" %>
+      <% color = "odds" %>
     <% else %>
-      <% viewor = "even" %>
+      <% color = "even" %>
     <% end %>
-    <div class="rows <%= viewor %> ">
-      <p class="view_short"><%= log.date %> </p>
-      <p class="view_long"><%= log.site.name %> </p>
-      <p class="view_short"><%= log.updated_at - log.created_at %> </p>
-      <p class="view_short"><%= log.created_at.strftime("%I:%m %p") %> </p>
-      <p class="view_short"><%= log.updated_at.strftime("%I:%m %p") %> </p>
-    </div>
+    <tr class="<%= color %>">
+      <td><%= log.date %></td>
+      <td><%= link_to log.site.name, site_path(log.site) %></td>
+      <td>
+        <% if log %>
+          <%= log.rate %>
+        <% end %>
+      </td>
+      <td><%= Time.parse(log.updated_at.to_s) - Time.parse(log.created_at.to_s) %></td>
+      <td><%= log.created_at.strftime("%I:%M:%S %p") %></td>
+      <td><%= log.updated_at.strftime("%I:%M:%S %p") %></td>
+    </tr>
     <% count += 1 %>
   <% end %>
-</div>
+</table>

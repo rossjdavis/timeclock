@@ -1,0 +1,18 @@
+<% @rate.errors.full_messages.each do |message| %>
+  <p class="alert"><%= message %></p>
+<% end %>
+
+<%= form_for [@site, @rate] do |f| %>
+<div>
+  <p>
+    <%= f.label "Job Code" %>
+    <%= f.select :job_code, @jobs.collect { |job | [job.name, job.code] }%>
+  </p>
+  <p>
+    <%= f.label "Pay Rate" %>
+    <%= f.text_field :pay_rate %>
+  </p>
+</div>
+
+  <%= f.submit %>
+<% end %>

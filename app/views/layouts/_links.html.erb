@@ -1,9 +1,0 @@
-<div class="rows">
-<% if current_user %>
-  <% if current_user.is_admin? %>
-    <p class="view_link"> <%= link_to "Sites", sites_path %> </p>
-    <p class="view_link"> <%= link_to "Users", users_path %> </p>
-  <% end %>
-    <p class="view_link"> <%= link_to "Logout", destroy_user_session_path, method: :delete %> </p>
-<% end %>
-</div>

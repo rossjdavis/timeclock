@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   # validates :password, length: { is: 9 }, numericality: { only_integer: true }
   validates :username, presence: true, uniqueness: true
-  # validates :fst_name, :lst_name, presence: true, length: { minimum: 2 }
+  validates :fst_name, :lst_name, presence: true, length: { minimum: 2 }
 
   def email_required?
     false

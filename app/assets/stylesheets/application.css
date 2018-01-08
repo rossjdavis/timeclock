@@ -17,29 +17,85 @@
 body {
   display: flex;
   flex-direction: column;
+  margin: 0 25px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
   margin: 0 auto;
 }
 
-div {
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav a {
+  text-decoration: none;
+  color: red;
+  padding: 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+table {
+  display: flex;
+}
+
+th,
+td {
+  padding: 10px 20px;
+}
+
+form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.rows {
+input[type="submit"] {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 1px;
+  padding: 10px 25px;
+  background: lightgrey;
 }
 
-.view_short {
-  width: 100px;
+input[type="submit"]:hover {
+  background: lightblue;
 }
 
-.view_long {
+.notice,
+.alert {
+  display: flex;
+  justify-content: center;
+}
+
+.alert {
+  color: red;
+}
+
+.links,
+.logo {
   width: 200px;
 }
 
-.view_link {
-  width: 50px;
+.logo {
+  font-size: 25px;
+}
+
+.logo-offset {
+  color: red;
 }
 
 .odds {

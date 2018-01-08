@@ -6,19 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-test_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: "192.168.1.1")
+first_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: "192.168.1.1")
+first_rate = first_site.rates.create(job_code: "AP01", pay_rate: 25.80)
 
-test_rate = test_site.jobs.create([
-  {code: "AP01", name: "Apprentice Plumber - 1", rate: 85.05},
-  {code: "AP02", name: "Apprentice Plumber - 2", rate: 93.50},
-  {code: "AP03", name: "Apprentice Plumber - 3", rate: 95.85},
-  {code: "AP04", name: "Apprentice Plumber - 4", rate: 99.99}
-])
+admin_user = User.create!(:username => "admin", :password => "password", :is_admin => true)
+other_user = User.create!(:username => "testuser", :password => "password", :fst_name => "Test", :lst_name => "User", :job_code => "AP01")
 
-# user_test = User.create(
-#   fst_name: "Ross",
-#   lst_name: "Davis",
-#   username: "rdavis",
-#   password: "password",
-#   email: "rdavis@gmail.com"
-# )
+# Job.create(code: "NA00", name: "Unassigned")
+Job.create(code: "AP01", name: "Apprentice Plumber - 1")
+Job.create(code: "AP02", name: "Apprentice Plumber - 2")
+Job.create(code: "AP03", name: "Apprentice Plumber - 3")
+Job.create(code: "AP04", name: "Apprentice Plumber - 4")

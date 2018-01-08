@@ -10,17 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128230317) do
+ActiveRecord::Schema.define(version: 20171211141706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "jobs", force: :cascade do |t|
     t.string "code", limit: 4
-    t.string "name"
-    t.float "rate"
-    t.bigint "site_id"
-    t.index ["site_id"], name: "index_jobs_on_site_id"
+    t.string "name", null: false
   end
 
   create_table "logs", force: :cascade do |t|
@@ -29,8 +26,16 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "rate"
     t.index ["site_id"], name: "index_logs_on_site_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.string "job_code", limit: 4
+    t.float "pay_rate"
+    t.bigint "site_id"
+    t.index ["site_id"], name: "index_rates_on_site_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -45,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.string "fst_name", default: "", null: false
     t.string "lst_name", default: "", null: false
     t.string "username", null: false
+    t.string "job_code"
     t.boolean "clocked_in", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,7 +69,7 @@ ActiveRecord::Schema.define(version: 20171128230317) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "jobs", "sites"
   add_foreign_key "logs", "sites"
   add_foreign_key "logs", "users"
+  add_foreign_key "rates", "sites"
 end

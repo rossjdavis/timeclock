@@ -1,24 +1,40 @@
-# README
+# Timeclock App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Purpose
 
-Things you may want to cover:
+Create a timeclock app for employees to clock in and out ONCE per day. The company would like to upgrade from physical punch-cards and track employee time-logs.
 
-* Ruby version
+## Planning
 
-* System dependencies
+* Obtain list of Job Codes and Rates
+* Discuss requirements with company manager
+* ERD (located in /planning)
 
-* Configuration
+## Technologies
 
-* Database creation
+* Ruby on Rails
+* pSQL
+* Devise
 
-* Database initialization
+## Features
 
-* How to run the test suite
+* Users can clock in once per day
+* Admin can view time logs and rate
+* Admin can set job title for users
+* Admin can set rates for job sites
 
-* Services (job queues, cache servers, search engines, etc.)
+## Testing
+* user: testuser, password: password
+* admin: admin, password: password
 
-* Deployment instructions
+## Unfinished Features
 
-* ...
+* Google Maps API for location based site selection
+* Admin can create jobs. Currently they are seeded
+* Additional Styling
+
+## Challenges
+
+* Initial trouble with planning and connecting the relationships
+* Understanding the rails framework
+* Feeling overwhelmed and stuck at multiple points
