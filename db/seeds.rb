@@ -9,7 +9,7 @@
 first_site = Site.create(name: "Non-Public Work", address: "2112 8th St Nw", ip: "192.168.1.1")
 first_rate = first_site.rates.create(job_code: "AP01", pay_rate: 25.80)
 
-admin_user = User.create!(:username => "admin", :password => "password", :is_admin => true)
+admin_user = User.create!(:username => "admin", :password => "password", :fst_name => "Ross", :lst_name => "Davis, ":is_admin => true)
 other_user = User.create!(:username => "testuser", :password => "password", :fst_name => "Test", :lst_name => "User", :job_code => "AP01")
 
 # Job.create(code: "NA00", name: "Unassigned")
